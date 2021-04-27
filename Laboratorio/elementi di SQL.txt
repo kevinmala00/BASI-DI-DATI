@@ -1,0 +1,114 @@
+							
+							ISTRUZIONI MICROSOFT SQL 2019
+
+
+notazione del linguaggio:
+-	elementi TERMINALI
+-	elementi <non terminali> ovvero le variabili
+-	elementi [opzionali]
+- 	elenchi di elementi vanno posto tra <...>
+-	elenco di termini di cui se ne deve scegliere solo uno termine1 | termine2 | termine3
+
+
+si fa riferimento al manuale online "transact sql 2019"
+
+TIPI DI DATO
+		i tipi di dati con prefisso var allocano dinamicamente la memeoria
+				
+		- dati numerici esatti 	
+									bigint			8 byte
+									int 			4 byte
+									smallint		2 byte
+									tinyint			1 byte
+									money 			variabile		utile per le valute
+									
+		- dati numeri approssimati
+										float
+		- stringhe di testo unicode
+										nchar(max)
+										nvarchar(max)
+										ntext(max)
+		- stringhe binarie
+								binary(max)
+								varbinary(max)
+		- stringhe di caratteri 
+									char(max)
+									varchar(max)
+									text(max)
+		- date e time
+						date 
+						datetime
+						time
+ISTRUZIONI
+			- 	CREATEDATABASE 
+					create database nome_database
+					(<elementi database>)
+			 
+			 
+			-	CREATETABLE 
+					create table nome_tabella
+					( <nome colonna1> <tipo di dato> [vincoli di colonna],
+						...
+					[vincoli di tabella])
+							VINCOLI DI COLONNA:
+									Not Null
+									Unique
+									primary key
+									references <tabella> [lista colonne]
+									check (condizione)
+									per definire un'alternative key bisogna mettere come vincoli Unique Not Null
+							
+							VINCOLI DI TABELLA:
+									PRIMARY KEY(<lista colonne>)
+									FOREIGN KEY (<lista colonne>) REFERENCES <tabella> [lista colonne]
+									CHECK (<condizione>)
+									CONSTRAINT nome_vincolo <vincolo>			permette di dare un nome la vincolo
+									
+									di default ogni azione che provoca una violazione dei vincoli di integrità non viene eseguita, 
+									posso settare però della azioni in risposta a queste situazioni. 
+									Nei casi di azioni specificate da ON sulla tabella riferita vengono effettuate azioni (le 4 opzioni finali)
+									sulla tabella dipendente
+									
+									FOREIGN KEY (<lista colonne>) 
+									REFERENCES <tabella> [lista colonne]
+									ON <DELETE | UPDATE>
+									<CASCADE | SET NULL | SET DEFAULT | NO ACTION>
+
+				
+			-	CREATE TYPE 	permette di inserire un nuovo tipo di dato
+					create type nome_type
+					(FROM tipo_base
+
+					
+			-	DROP DATABASE permette di eliminare il db
+					drop database nome_database
+				
+				serve eseguire il comando sul db master
+
+			
+			-	DROP TABLE permette di eliminare una tabella
+					drop table nome_tabella
+				
+				
+			-	ALTER TABLE
+					alter table <nome_tabella> <tipo_modifica>
+					
+							<tipo_modifica>:
+									ADD [COLUMN] <nome_colonna><nome_type><vincoli di colonna>
+									DROP [COLUMN] <nome_colonna> RESTRICT | CASCADE
+									ADD <vincolo di tabella>
+									DROP <nome_vincolo> RESTRICT | CASCADE
+									ALTER [COLUMN] <nome_colonna> SET DEFAULT <valore>
+									ALTER [COLUMN] <nome_colonna> DROP DEFAULT
+									
+			
+			-	ALTER TYPE
+					
+									
+			
+					
+			
+			
+			
+			
+	
