@@ -40,16 +40,22 @@ TIPI DI DATO
 						datetime
 						time
 ISTRUZIONI
-			- 	CREATEDATABASE 
-					create database nome_database
-					(<elementi database>)
+			- CREATEDATABASE 
+					CREATE DATABASE nome_database
+					(
+					<elementi database>
+					);
 			 
 			 
-			-	CREATETABLE 
-					create table nome_tabella
-					( <nome colonna1> <tipo di dato> [vincoli di colonna],
-						...
-					[vincoli di tabella])
+			-CREATETABLE 
+					CREATE TABLE 
+					{nome_tabella
+						( 
+						<nome colonna1> <tipo di dato> [vincoli di colonna],
+							...
+						[vincoli di tabella]
+						);
+					
 							VINCOLI DI COLONNA:
 									Not Null
 									Unique
@@ -75,40 +81,85 @@ ISTRUZIONI
 									<CASCADE | SET NULL | SET DEFAULT | NO ACTION>
 
 				
-			-	CREATE TYPE 	permette di inserire un nuovo tipo di dato
-					create type nome_type
-					(FROM tipo_base
-
+			-CREATE TYPE 	permette di inserire un nuovo tipo di dato
+					CREATE TYPE nome_type
+					(
+					FROM tipo_base <vincoli di integrità>
+					)
 					
-			-	DROP DATABASE permette di eliminare il db
-					drop database nome_database
+			-DROP DATABASE permette di eliminare il db
+					DROP DATABASE nome_database
 				
-				serve eseguire il comando sul db master
+						serve eseguire il comando sul db master
 
 			
-			-	DROP TABLE permette di eliminare una tabella
-					drop table nome_tabella
+			-DROP TABLE permette di eliminare una tabella
+					DROP TABLE nome_tabella
+					
+			-TRUNCATE	elimina le tuple inserite nella tabella, preservando però la tabella
+				truncate name_table 
+
 				
-				
-			-	ALTER TABLE
+			-ALTER TABLE
 					alter table <nome_tabella> <tipo_modifica>
 					
 							<tipo_modifica>:
 									ADD [COLUMN] <nome_colonna><nome_type><vincoli di colonna>
 									DROP [COLUMN] <nome_colonna> RESTRICT | CASCADE
+											con cascade impone l'eliminazione
 									ADD <vincolo di tabella>
 									DROP <nome_vincolo> RESTRICT | CASCADE
 									ALTER [COLUMN] <nome_colonna> SET DEFAULT <valore>
 									ALTER [COLUMN] <nome_colonna> DROP DEFAULT
 									
-			
-			-	ALTER TYPE
+			-USE
+					USE name_database;
 					
-									
-			
+					permette di spostarsi nel name_database
 					
+			-GO
+				GO 
+				
+				permette di eseguire il comando, le istruzioni successive saranno sicure che iil comando precedente è stato eseguito
+
+INTERROGAZIONE
+			--	con questi due trattini si cindicano i commenti, fino alla fine della linea
 			
+			-INSERT
+				insert into name_table (attrbiute1, ...) 
+				values ("val1",...)
 			
-			
-			
+			-SELECT
+				select name_colum1,...
+				from name_table1,...
+				where <predicati>
+				order by name_colum1,... <mode>
+				
+				NB: con * si considerano tutte le colonne (attributi)
+
+						PREDICATI SEMPLICI 
+							-operatori relazionali -> <attr> <op_rel> <cost>
+									<op_rel> -> {=,<>,<,>,<=,>=}
+							-operatori di range -> <attr> BETWEEN <cost1> AND <cost2>
+							-operatori di set -> <attr> IN (<cost1>,...,<costN>)
+							-operatori di confronto tra stringhe -> <attr> LIKE <stringa>
+									<stringa> identificata tra '..'
+										pattern matching
+											'%string'	% si espande a stringa di caratteri
+											'_string'	_ si espande a un singolo carattere
+											'[set]'		stringa che contiene il set di caratteri
+											'[^set]'	stringa che non contiene il set di caratteri
+							-operatori quantificati -> <attr> <op_rel> [ANY|ALL] (<sub-query>)
+									ANY: uno di 
+									ALL: tutti
+							-operatori di confronto con valori NULL -> <attr> IS [NOT] NOT
+							
+						MODE
+							-DESC -> decrescente
+							-ASC -> crescente
+
+	SET NOCOUNT ON/OFF 		disabilita/ abilita
+	SET DATEFROMAT	dmy 	setta il formato della data come giorno/mese/anno
 	
+			
+			
