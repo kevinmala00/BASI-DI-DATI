@@ -163,3 +163,63 @@ INTERROGAZIONE
 	
 			
 			
+DATA MANIPULATION LANGUAGE 
+	
+	DEFAULT	
+		permette di settare il valore di default rispettivo di una colonna
+		
+		CREATE TABLE nome_tabella (
+		nome_colonna data_type DEFAULT valore_di_default,
+		...
+		)
+		
+		ALTER TABLE nome_tabella
+		ADD CONSTRAINT nome_constraint DEFAULT valore_di_default FOR nome_colonna
+		
+		
+	INSERT
+		permette di inserire una tupòe nella tabella
+		
+		INSERT INTO nome_tabella (attributes list) VALUES (values list);
+		
+		NB: le liste escluse vengono riempite con i valori di default se questo non genera errore
+		
+	
+	DELETE
+		permette di eliminare i valori riferiti alla tabelle nome_tabella che corrispondono alla condizione della where (se non espresso vengono eliminate tutte le tuple della tabella)
+		
+		DELETE FROM nome_tabella
+		[WHERE comndizione]
+	
+	
+	UPDATE
+		permette di modificare valori riferiti a colonne indicate
+		
+		UPDATE nome_tabella 
+		SET nome_colonna = valore_attributo
+		[WHERE  condizione]
+	
+
+	DATI DERIVATI/COLONNE CALCOLATE
+		è possibile definire le colonne come operazioni su dati già esistentei
+		
+		CREATE TABLE nome_tabella
+		(
+		nome_colonna AS computed_column_expression,
+		...
+		)
+	
+
+GERARCHIE 
+	il fatto che una primary key di una tabella fa riferimento ad un primary key di un'altra tabella comporta la formazione di una gerarchia
+	
+
+
+ALTRO 
+	getdate() 	
+		fornisce la data attuale
+		
+	DATEDIFF(mode, startdate, enddate)		
+				calcola la differenza tra enddate e startdate in mode che può essere year, month, day, minute, etc...
+	
+	
