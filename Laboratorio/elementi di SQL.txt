@@ -222,4 +222,6 @@ ALTRO
 	DATEDIFF(mode, startdate, enddate)		
 				calcola la differenza tra enddate e startdate in mode che può essere year, month, day, minute, etc...
 	
+SUBQUERY
+	Solitamente comportano dei confronti con un insieme di valori per quaesto bisogna utilizzare IN (= ANY), NOT IN (<> ALL)
 	

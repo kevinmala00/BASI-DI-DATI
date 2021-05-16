@@ -88,3 +88,16 @@ where e.Voto>=28
 --1 combinazione di studenti e docenti nella stessa città inclusi gli studenti/docenti che risiedono in unca città che no ha corrispondenza in docenti/studenti
 select *
 from S full join D on (s.Citta=d.Citta)
+
+--SUBQUERY
+--voto massimo per ugo rossi 
+select max(Voto)
+from S join	E ON (S.Matr=E.Matr)
+WHERE S.SNome = 'Ugo Rossi'
+
+--seleziona gli studenti che hanno svolto un esame ottenendo il voto massimo ottenuto da ugo rossi
+select distinct s.*
+from S JOIN E ON (S.Matr=E.Matr)
+WHERE E.Voto =ANY(select max(Voto)
+from S join	E ON (S.Matr=E.Matr)
+WHERE S.SNome = 'Ugo Rossi')
