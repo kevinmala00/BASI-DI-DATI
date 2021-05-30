@@ -101,3 +101,17 @@ from S JOIN E ON (S.Matr=E.Matr)
 WHERE E.Voto =ANY(select max(Voto)
 from S join	E ON (S.Matr=E.Matr)
 WHERE S.SNome = 'Ugo Rossi')
+
+
+--GROUPBY, VISTE 
+--voto massimo per ogni studente
+select matr, max(voto)
+from E
+group by matr
+
+--voto massimo e minimo per ogni studente escludendo gli esami del corso c2
+select matr, max(voto) as votomax, min(voto) as votomin
+from E
+where cc <> 'c2'
+group by all matr
+
